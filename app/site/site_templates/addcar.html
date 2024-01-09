@@ -1,0 +1,32 @@
+{% extends 'profile.html' %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages(category_filter=["success"]) %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for message in messages %}
+                <div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+    <div class="addcar">
+        <form action="/addcars" method="POST" class="addcarform">
+            <label for="make" style="margin-top: 0px;"> Make</label>
+            <input type="text" name="make" >
+            <label for="model"> Model</label>
+            <input type="text" name="model" >
+            <label for="year"> Year</label>
+            <input type="text" name="year" >
+            <label for="color"> Color</label>
+            <input type="text" name="color" >
+            <label for="price"> Price</label>
+            <input type="text" name="price" >
+            <input type="submit" value="Add" class="addcar-button">
+        </form>
+    </div>
+
+    
+{% endblock %}

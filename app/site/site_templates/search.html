@@ -1,0 +1,16 @@
+{% extends 'profile.html' %}
+
+{% block content %}
+
+<div class="search-car">
+    <form action="/search" method="POST">
+        <label for="make"> Make</label>
+        <input type="text" name="make" placeholder="Make">
+        <label for="model"> Model</label>
+        <input type="text" name="model" placeholder="Model">
+        <label for="year"> Year</label>
+        <input type="text" name="year" placeholder="Year">
+        <input type="submit" value="Search">
+    </form>
+
+{% endblock %}

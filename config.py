@@ -1,4 +1,3 @@
-# Configuration settings for Flask Car Dealership App
 import os
 from dotenv import load_dotenv
 

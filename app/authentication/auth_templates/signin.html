@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Sign In</title>
+</head>
+<body>
+    <h1>Sign In</h1>
+    <div id="sign-in">
+        <form action="/signin" method="POST">
+            {{ form.csrf_token }}
+            {{ form.email.label }} {{ form.email() }}<br><br>
+            {{ form.password.label }} {{ form.password() }}<br><br>
+            {{ form.submit() }}
+        </form>
+    </div>
+</body>
+</html>
+
