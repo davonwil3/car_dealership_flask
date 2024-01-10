@@ -1,28 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/styles.css">
-    <title>Profile</title>
-    
-</head>
-<body>
-    <div class="dashboard">
-        <div class="left-panel">
-            <h2>Lerolo</h2>
-            <a href="{{ url_for('site.addcar') }}">Add a car</a>
-            <a href="{{ url_for('site.deletepage') }}" >Delete a car</a>
-            <a href="#" >Search a Car</a>
-            <a href="{{ url_for('site.getallcars') }}" >Get all cars</a>
-            <a href="#" >Update a Car</a>
-        </div>
-        <div class="dashboard-content">
-            {% block content %}
-            {% endblock %}
-           
-        </div>
-    </div>
-    
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="profile margin-t">
+    <h2 style="position: unset;">Profile Information</h2>
+    <p>First Name: {{ user.first_name }}</p>
+    <p>Last Name: {{ user.last_name }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Token: {{ user.token }}</p>
+
+</div>
+
+
+
+
+
+{% endblock %}

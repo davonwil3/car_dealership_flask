@@ -1,4 +1,4 @@
-{% extends 'profile.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 
@@ -11,8 +11,8 @@
         </div>
     {% endif %}
 {% endwith %}
-
-    <div class="addcar">
+    <h2>Add Cars</h2>
+    <div class="addcar margin-t" >  
         <form action="/addcars" method="POST" class="addcarform">
             <label for="make" style="margin-top: 0px;"> Make</label>
             <input type="text" name="make" >

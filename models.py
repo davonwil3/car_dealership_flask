@@ -24,12 +24,14 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(50), nullable=False, unique=True)
     password = db.Column(db.String(256), nullable=False)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    token = db.Column(db.String(32), index=True, unique=True)
 
     def __init__(self, first_name, last_name, email, password):
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
         self.password = generate_password_hash(password)
+        self.token = token_hex(16)
       
 
     def __repr__(self):
@@ -57,10 +59,20 @@ class Car(db.Model):
         self.year = year
         self.color = color
         self.price = price
-        
+    
+    def serialize(self):
+        return {
+            'car_id': self.car_id,
+            'make': self.make,
+            'model': self.model,
+            'year': self.year,
+            'color': self.color,
+            'price': self.price
+        }
 
     def __repr__(self):
         return f"<Car {self.make} {self.model} {self.year} {self.color} {self.price} >"
+
 
     
 

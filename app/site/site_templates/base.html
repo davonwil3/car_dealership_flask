@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles.css">
+    <title>Profile</title>
+    
+</head>
+<style>
+    
+    
+    .dashboard-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100%;
+    }
+    .dashboard{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 90vh;
+        width: 80%;
+        background-color: #2B4489;
+        border-radius: 25px;
+    }
+    
+</style>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <!-- Logo placeholder -->
+        </div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('auth.signin') }}">Sign In</a></li>
+            <li><a href="{{ url_for('auth.signup') }}">Sign Up</a></li>
+            <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="dashboard-container">
+    <div class="dashboard">
+        <div class="left-panel">
+            <h2>Lerolo</h2>
+            <a href="{{ url_for('site.profile') }}">Profile Info</a>
+            <a href="{{ url_for('site.addcar') }}">Add a car</a>
+            <a href="{{ url_for('site.deletepage') }}" >Delete a car</a>
+            <a href="{{ url_for('site.getallcars') }}" >Get all cars</a>
+            <a href="{{ url_for('site.update') }}" >Update a Car</a>
+        </div>
+        <div class="dashboard-content">
+            {% block content %}
+            {% endblock %}
+           
+        </div>
+    </div>
+    </div>
+    
+</body>
+</html>

@@ -9,13 +9,10 @@ from models import db
 from ..api.routes import site
 
 
-
-
 auth = Blueprint("auth", __name__, template_folder="auth_templates")
 
 
-
-
+@auth.route("/", methods=["GET", "POST"])
 @auth.route("/signup", methods=["GET", "POST"])
 def signup():
     form = UserSignupForm()
@@ -51,25 +48,20 @@ def signin():
             login_user(logged_user)
             print("User logged in:", current_user)
             flash("You were successfully logged in", "auth-success")
-            return redirect(url_for("site.getallcars"))  # Check the route name here
+            return redirect(url_for("site.profile"))  # Check the route name here
         else:
             flash("Your Email/Password is incorrect", "auth-failed")
             print("User not found")
-            return redirect(url_for("auth.signin.html"))
+            return redirect(url_for("auth.signin"))
     print("error")
 
     return render_template("signin.html", form=form)
 
 
 
-@auth.route('/profile')
-@login_required
-def profile():
-    return render_template('profile.html')
-
 @auth.route("/logout")
 @login_required
 def logout():
     logout_user()
     flash("You have successfully logged out", "logout-success")
-    return redirect(url_for("site.home"))
+    return redirect(url_for("auth.signin"))

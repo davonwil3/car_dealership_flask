@@ -1,4 +1,4 @@
-{% extends 'profile.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 <style>
@@ -20,7 +20,8 @@
         background-color: #ddd;
     }
 </style>
-<table class="get-all-cars">
+<h2>Delete Cars</h2>
+<table class="get-all-cars margin-t" >
     <thead>
         <tr>
             <th>Car_id</th>
@@ -51,7 +52,7 @@
         var r = confirm("Are you sure you want to delete this car?");
         if (r == true) {
           
-            fetch('/deletecar/' + carId, { // Adjust the URL
+            fetch('/deletecar/' + carId, { 
                 method: 'POST'
             })
             .then(response => {
