@@ -25,7 +25,7 @@ body {
     justify-content: space-between;
     align-items: center;
     height: 10vh;
-    width: 30%;
+    width: 20%;
     margin-right: 20px;
 }
 .nav-links li{
@@ -214,6 +214,9 @@ h2{
     display: flex;
 
    
+}
+.modal-content h2{
+    position: unset;
 }
 #updateCarForm{
     height: 550px
