@@ -11,11 +11,20 @@ from flask_login import LoginManager
 db = SQLAlchemy()
 login_manager = LoginManager()
 
-
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(user_id)
+    # Debugging: print or log the user_id
+    print(f"Loading user with ID: {user_id}")
 
+    user = User.query.get(int(user_id))
+
+    # Further debugging: print or log if a user was found or not
+    if user:
+        print(f"User loaded: {user}")
+    else:
+        print("No user found with this ID.")
+
+    return user
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)

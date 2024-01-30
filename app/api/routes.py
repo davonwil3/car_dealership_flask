@@ -17,8 +17,7 @@ site = Blueprint("site", __name__, template_folder="../site/site_templates")
 # GET all cars
 
 @site.route('/getcars', methods=['GET'])
-@token_required
-def getcars(current_user_token):
+def getcars():
     cars = Car.query.all()
     response = jsonify([car.serialize() for car in cars])
     return response
@@ -26,8 +25,7 @@ def getcars(current_user_token):
 # POST add a new car
 
 @site.route('/addnewcar', methods=['POST'])
-@token_required
-def addnewcar(current_user_token):
+def addnewcar():
     new_car = Car(
         make=request.json['make'],
         model=request.json['model'],
@@ -43,8 +41,7 @@ def addnewcar(current_user_token):
 # GET car by id
 
 @site.route('/getcarbyid', methods=['GET'])
-@token_required
-def getcarbyid(current_user_token):
+def getcarbyid():
     car_id = request.json['car_id']
     car = Car.query.get_or_404(car_id)
     return jsonify({
@@ -59,8 +56,7 @@ def getcarbyid(current_user_token):
 # PUT update an existing car
 
 @site.route('/updatecars', methods=['PUT'])
-@token_required
-def updatecars(current_user_token):
+def updatecars():
     car_id = request.json['car_id']
     car = Car.query.get(car_id)
     if car:
@@ -77,8 +73,7 @@ def updatecars(current_user_token):
 
 # DELETE a car
 @site.route('/deletecars', methods=['DELETE'])
-@token_required
-def deletecars(current_user_token):
+def deletecars():
     car_id = request.json['car_id']
     car = Car.query.get_or_404(car_id)
     db.session.delete(car)
