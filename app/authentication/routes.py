@@ -19,12 +19,12 @@ auth = Blueprint("auth", __name__, template_folder="auth_templates")
 @auth.route("/signup", methods=["POST"])
 def signup():
     data = request.get_json()
-    first_name = data.get("first_name")
-    last_name = data.get("last_name")
+    firstName = data.get("firstName")
+    lastName = data.get("lastName")
     email = data.get("email")
     password = data.get("password")
 
-    if not all([first_name, last_name, email, password]):
+    if not all([firstName, lastName, email, password]):
         return jsonify({"message": "Missing fields"}), 400
 
     user_exists = User.query.filter_by(email=email).first() is not None
@@ -32,7 +32,7 @@ def signup():
         return jsonify({"message": "Email already registered"}), 409
 
   
-    user = User(first_name=first_name, last_name=last_name, email=email, password=password)
+    user = User(first_name=firstName, last_name=lastName, email=email, password=password)
     db.session.add(user)
     db.session.commit()
 
