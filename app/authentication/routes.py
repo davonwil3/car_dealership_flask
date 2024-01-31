@@ -7,6 +7,10 @@ from flask_login import current_user
 from werkzeug.security import check_password_hash
 from models import db
 from ..api.routes import site
+import datetime
+from flask_jwt_extended import create_access_token
+from flask import jsonify
+
 
 
 auth = Blueprint("auth", __name__, template_folder="auth_templates")

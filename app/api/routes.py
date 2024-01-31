@@ -8,6 +8,7 @@ from flask_login import login_required
 from flask import flash
 from flask_login import current_user
 from helpers import token_required
+from flask_jwt_extended import jwt_required
 
 site = Blueprint("site", __name__, template_folder="../site/site_templates")
 
@@ -17,6 +18,7 @@ site = Blueprint("site", __name__, template_folder="../site/site_templates")
 # GET all cars
 
 @site.route('/getcars', methods=['GET'])
+@jwt_required()
 def getcars():
     cars = Car.query.all()
     response = jsonify([car.serialize() for car in cars])
@@ -25,6 +27,7 @@ def getcars():
 # POST add a new car
 
 @site.route('/addnewcar', methods=['POST'])
+@jwt_required()
 def addnewcar():
     new_car = Car(
         make=request.json['make'],
@@ -56,8 +59,9 @@ def getcarbyid():
 # PUT update an existing car
 
 @site.route('/updatecars', methods=['PUT'])
+@jwt_required()
 def updatecars():
-    car_id = request.json['car_id']
+    car_id = request.json['carId']
     car = Car.query.get(car_id)
     if car:
         car.make = request.json.get('make', car.make)
@@ -73,9 +77,11 @@ def updatecars():
 
 # DELETE a car
 @site.route('/deletecars', methods=['DELETE'])
+@jwt_required()
 def deletecars():
-    car_id = request.json['car_id']
-    car = Car.query.get_or_404(car_id)
+    print(request.json)
+    carId = request.json['carId']
+    car = Car.query.get_or_404(carId)
     db.session.delete(car)
     db.session.commit()
     return jsonify({"message": "Car deleted successfully"}), 200
